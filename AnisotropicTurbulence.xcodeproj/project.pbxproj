@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		81D2EE6F1A5AEE350069E485 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D2EE6E1A5AEE350069E485 /* main.m */; };
+		81D2EE761A5C9F620069E485 /* GLNumericalModelingKit.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D2EE751A5C9F620069E485 /* GLNumericalModelingKit.dylib */; };
+		81D2EE781A5C9FB90069E485 /* GLOceanKit.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D2EE771A5C9FB90069E485 /* GLOceanKit.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		81D2EE6B1A5AEE350069E485 /* AnisotropicTurbulence */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AnisotropicTurbulence; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D2EE6E1A5AEE350069E485 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		81D2EE751A5C9F620069E485 /* GLNumericalModelingKit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = GLNumericalModelingKit.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		81D2EE771A5C9FB90069E485 /* GLOceanKit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = GLOceanKit.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D2EE781A5C9FB90069E485 /* GLOceanKit.dylib in Frameworks */,
+				81D2EE761A5C9F620069E485 /* GLNumericalModelingKit.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +47,8 @@
 		81D2EE621A5AEE350069E485 = {
 			isa = PBXGroup;
 			children = (
+				81D2EE771A5C9FB90069E485 /* GLOceanKit.dylib */,
+				81D2EE751A5C9F620069E485 /* GLNumericalModelingKit.dylib */,
 				81D2EE6D1A5AEE350069E485 /* AnisotropicTurbulence */,
 				81D2EE6C1A5AEE350069E485 /* Products */,
 			);
@@ -202,6 +210,15 @@
 		81D2EE731A5AEE350069E485 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(BUILT_PRODUCTS_DIR)/usr/local/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/AnisotropicTurbulence-atnabrqlcalplleqpqjamqedqolo/Build/Products/Debug",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -209,6 +226,15 @@
 		81D2EE741A5AEE350069E485 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(BUILT_PRODUCTS_DIR)/usr/local/include",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/AnisotropicTurbulence-atnabrqlcalplleqpqjamqedqolo/Build/Products/Debug",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -232,6 +258,7 @@
 				81D2EE741A5AEE350069E485 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
