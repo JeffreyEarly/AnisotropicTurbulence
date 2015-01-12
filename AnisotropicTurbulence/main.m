@@ -22,7 +22,8 @@ int main(int argc, const char * argv[]) {
 		NSUInteger nPoints = 256;
 		NSUInteger aspectRatio = 1;
 		
-		NSURL *baseFolder = [NSURL fileURLWithPath: [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES) firstObject]];
+		//NSURL *baseFolder = [NSURL fileURLWithPath: [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES) firstObject]];
+		NSURL *baseFolder = [NSURL fileURLWithPath: @"/Volumes/Data/Anisotropy/"];
 		NSString *baseName = experiment == kIsotropicExperimentType ? @"TurbulenceIsotropic" : @"TurbulenceAnisotropic";
 		NSFileManager *fileManager = [[NSFileManager alloc] init];
 		
@@ -41,7 +42,7 @@ int main(int argc, const char * argv[]) {
 			qgSpinup.shouldUseSVV = YES;
 			qgSpinup.shouldAntiAlias = YES;
 			qgSpinup.shouldForce = YES;
-			qgSpinup.forcingFraction = 8;
+			qgSpinup.forcingFraction = 5; // Try chaging this to say, 12---it's a very dramatic qualitative difference
 			qgSpinup.forcingWidth = 1;
 			qgSpinup.f_zeta = 0.01;
 			qgSpinup.forcingDecorrelationTime = HUGE_VAL;
@@ -67,7 +68,7 @@ int main(int argc, const char * argv[]) {
 			qgSpinup.shouldAdvectTracer = NO;
 			qgSpinup.outputInterval = 10*86400.;
 			
-			[qgSpinup runSimulationToTime: 100*86400];
+			[qgSpinup runSimulationToTime: 31*86400];
 		}
 		
 		NSURL *restartURLx4 = [baseFolder URLByAppendingPathComponent: [baseName stringByAppendingString: @"@x4.nc"]];
@@ -81,7 +82,7 @@ int main(int argc, const char * argv[]) {
 			qgSpinup.shouldAdvectTracer = NO;
 			qgSpinup.outputInterval = 10*86400.;
 			
-			[qgSpinup runSimulationToTime: 100*86400];
+			[qgSpinup runSimulationToTime: 31*86400];
 		}
 		
 		Quasigeostrophy2D *qg = [[Quasigeostrophy2D alloc] initWithFile:restartURLx4 resolutionDoubling:NO equation: equation];
