@@ -21,9 +21,11 @@ int main(int argc, const char * argv[]) {
 		GLFloat domainWidth = (2*M_PI)*2*611e3; // m
 		NSUInteger nPoints = 256;
 		NSUInteger aspectRatio = 1;
+        
+        GLFloat nonLinearFactor = 1;
 		
 		//NSURL *baseFolder = [NSURL fileURLWithPath: [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES) firstObject]];
-		NSURL *baseFolder = [NSURL fileURLWithPath: @"/Volumes/Data/Anisotropy/"];
+		NSURL *baseFolder = [NSURL fileURLWithPath: @"/Volumes/seattle_data1/jearly/AnisotropyExperiments/GalperinRegime/"];
 		NSString *baseName = experiment == kIsotropicExperimentType ? @"TurbulenceIsotropic" : @"TurbulenceAnisotropic";
 		NSFileManager *fileManager = [[NSFileManager alloc] init];
 		
@@ -42,19 +44,19 @@ int main(int argc, const char * argv[]) {
 			qgSpinup.shouldUseSVV = YES;
 			qgSpinup.shouldAntiAlias = YES;
 			qgSpinup.shouldForce = YES;
-			qgSpinup.forcingFraction = 5; // Try chaging this to say, 12---it's a very dramatic qualitative difference
+			qgSpinup.forcingFraction = 2.0; // Try chaging this to say, 12---it's a very dramatic qualitative difference
 			qgSpinup.forcingWidth = 1;
-			qgSpinup.f_zeta = 0.01;
+			qgSpinup.f_zeta = .1/nonLinearFactor;
 			qgSpinup.forcingDecorrelationTime = HUGE_VAL;
 			qgSpinup.thermalDampingFraction = 0.0;
-			qgSpinup.frictionalDampingFraction = 0.1;
+			qgSpinup.frictionalDampingFraction = 3;
 			
 			qgSpinup.outputFile = restartURLx1;
 			qgSpinup.shouldAdvectFloats = NO;
 			qgSpinup.shouldAdvectTracer = NO;
-			qgSpinup.outputInterval = 100*86400.;
+			qgSpinup.outputInterval = nonLinearFactor*86400.;
 			
-			[qgSpinup runSimulationToTime: 1000*86400];
+			[qgSpinup runSimulationToTime: 250*nonLinearFactor*86400];
 		}
 		
 		NSURL *restartURLx2 = [baseFolder URLByAppendingPathComponent: [baseName stringByAppendingString: @"@x2.nc"]];
@@ -80,9 +82,9 @@ int main(int argc, const char * argv[]) {
 			qgSpinup.outputFile = restartURLx4;
 			qgSpinup.shouldAdvectFloats = NO;
 			qgSpinup.shouldAdvectTracer = NO;
-			qgSpinup.outputInterval = 10*86400.;
+			qgSpinup.outputInterval = 1*86400.;
 			
-			[qgSpinup runSimulationToTime: 31*86400];
+			[qgSpinup runSimulationToTime: 3*86400];
 		}
 		
 		Quasigeostrophy2D *qg = [[Quasigeostrophy2D alloc] initWithFile:restartURLx4 resolutionDoubling:NO equation: equation];
