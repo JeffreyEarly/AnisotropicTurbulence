@@ -23,14 +23,14 @@ typedef NS_ENUM(NSUInteger, ForcingStrength) {
 
 int main(int argc, const char * argv[]) {
 	@autoreleasepool {
-		ExperimentType experiment = kAnisotropicExperimentType;
-        ForcingStrength forcing = kModerateForcing;
+		ExperimentType experiment = kIsotropicExperimentType;
+        ForcingStrength forcing = kStrongForcing;
 		GLFloat domainWidth = (2*M_PI)*2*611e3; // m
 		NSUInteger nPoints = 256;
 		NSUInteger aspectRatio = 1;
         
 		//NSURL *baseFolder = [NSURL fileURLWithPath: [NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES) firstObject]];
-		NSURL *baseFolder = [NSURL fileURLWithPath: @"/Volumes/OceanTransfer/AnisotropicExperiments/"];
+		NSURL *baseFolder = [NSURL fileURLWithPath: @"/Volumes/OceanTransfer/IsotropicExperiments/"];
         if (forcing == kWeakForcing) {
             baseFolder = [baseFolder URLByAppendingPathComponent: @"WeakForcing"];
         } else if (forcing == kModerateForcing) {
@@ -144,7 +144,7 @@ int main(int argc, const char * argv[]) {
             qg.shouldAdvectTracer = NO;
             qg.outputInterval = 1*86400.;
             
-            [qg runSimulationToTime: 2500*86400];
+            [qg runSimulationToTime: 1000*86400];
         }
 		
 	}
